@@ -4,10 +4,11 @@ Sifting through high-throughput sequencing data to identify miRNAs with a regula
 
 ## Installation
 
-```
+```R
 install.packages("devtools")
 library("devtools")
 install_github('SRHilz/miRsift')
+library(miRsift)
 ```
 
 ## Quick Start
