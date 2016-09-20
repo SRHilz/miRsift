@@ -1,10 +1,14 @@
 Package: miRsift
-Title: Sifting through high-throughput sequencing data to identify microRNAs with a regulatory impact
 Version: 0.0.0
-Authors@R: person(“Stephanie”, “Hilz”, email = “sh74@cornell.edu”, role = c("aut", "cre"))
+Title: Sifting through high-throughput sequencing data to identify microRNAs with a regulatory impact
+Authors@R: person("Stephanie", "Hilz",
+                   email = "sh745@cornell.edu",
+                   role = c("aut", "cre"))
+Author: Stephanie Hilz [aut, cre]
+Maintainer: Stephanie Hilz <sh745@cornell.edu>
 Description: miRsift was designed to help biologists identify microRNA (miRNA) regulatory signatures in RNAseq data. miRsift does this by performing multiple linear regression analysis on the relationship between the fold change for each expressed gene in the RNAseq data and the predicted fold change response contribution for each of 107 conserved miRNA families. It has the option of first filtering the RNAseq data, retaining only genes which show post-transcriptional gene regulatory signatures, thus reducing noise in the dataset due solely to transcriptional changes. To help with the intepretation of the miRsift analysis output, it also has the option of integrating the results of small RNA sequencing data into the final output. miRsift, therefore, is a useful tool for determining if a relationship exists between changes in gene expression observed in RNA sequencing data and one or more miRNA families.
 Depends: R (>= 3.3.1)
 License: MIT
 Encoding: UTF-8
-RoxygenNote: 5.0.1.9000Suggests: BiocStyle, rmarkdown, R.rsp 
+RoxygenNote: 5.0.1.9000Suggests: BiocStyle, rmarkdown, R.rsp
 VignetteBuilder: R.rsp
