@@ -25,13 +25,16 @@ miRsiftAnalyze <- function(contextTable, rnaseqTable,...){
   mergedTable$FDR <- NULL
   optionalVariables <- list(...)
   if(!is.null(optionalVariables$PTList)) {
+    PTList <- optionalVariables$PTList
     mergedTable <- mergedTable[mergedTable$Row.names %in% PTList,]
   } 
   microRNANames <- names(mergedTable)[2:(length(mergedTable)-1)]
   allResults <- data.frame(miRfamily=rep(NA, length(microRNANames)),
                            miRfamily.logCPM=rep(NA, length(microRNANames)),
                            miRfamily.logFC=rep(NA, length(microRNANames)))
-  if(!is.null(optionalVariables$smallrnaseq.minexp) & !is.null(optionalVariables$smallrnaseqTable)) {#smallRNAseq data with cutoff
+  if(!is.null(optionalVariables$smallrnaseqMinExp) & !is.null(optionalVariables$smallrnaseqTable)) {#smallRNAseq data with cutoff
+    smallrnaseqMinExp <- optionalVariables$smallrnaseqMinExp
+    smallrnaseqTable <- optionalVariables$smallrnaseqTable
     for (i in 1:length(microRNANames)){
       allResults$miRfamily[i] <- microRNANames[i]
       if (microRNANames[i] %in% rownames(smallrnaseqTable)){
@@ -39,8 +42,9 @@ miRsiftAnalyze <- function(contextTable, rnaseqTable,...){
         allResults$miRfamily.logFC[i] <- smallrnaseqTable[microRNANames[i],]$logFC
       }
     }
-    microRNANames <- microRNANames[microRNANames %in% rownames(smallrnaseqTable[which(2^smallrnaseqTable$logCPM >= as.numeric(smallrnaseq.minexp)),])]
+    microRNANames <- microRNANames[microRNANames %in% rownames(smallrnaseqTable[which(2^smallrnaseqTable$logCPM >= as.numeric(smallrnaseqMinExp)),])]
   }else if(!is.null(optionalVariables$smallrnaseqTable)){#smallRNAseq data no cutoff
+    smallrnaseqTable <- optionalVariables$smallrnaseqTable
     for (i in 1:length(microRNANames)){
       allResults$miRfamily[i] <- microRNANames[i]
       if (microRNANames[i] %in% rownames(smallrnaseqTable)){
